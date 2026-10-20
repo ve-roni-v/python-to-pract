@@ -1,54 +1,21 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="ru">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Новостной портал</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <header>-->
-<!--        <h1>Новостной портал</h1>-->
-<!--        <p>Последние новости нашего города</p>-->
-<!--    </header>-->
-<!--    <main>-->
-<!--        <h2>Главная страница</h2>-->
-<!--        <article>-->
-<!--            <h3>В городе открылся новый парк</h3>-->
-<!--            <p>-->
-<!--                В центральной части города открылся новый парк-->
-<!--                с прогулочными дорожками и детской площадкой.-->
-<!--            </p>-->
-<!--        </article>-->
-<!--    </main>-->
-<!--    <footer>-->
-<!--        <p>Учебный проект ITSTEP</p>-->
-<!--    </footer>-->
-<!--</body>-->
-<!--</html>-->
+{% extends "news/base.html" %}
 
+{% block title %}
+Главная — Новостной портал
+{% endblock %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новостной портал</title>
-</head>
-<body>
-    <header>
-        <h1>{{ headline }}</h1>
-        <p>Последние новости нашего города</p>
-    </header>
-    <main>
-        <h2>Главная страница</h2>
-        <article>
-            <h3>{{ title }}</h3>
-            <p>{{ text }}</p>
-            <p>Автор: {{ author }}</p>
-        </article>
-    </main>
-    <footer>
-        <p>Учебный проект ITSTEP</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+    <h2>{{ title }}</h2>
+
+    <section>
+        <h3>Последние публикации</h3>
+        <p>Найдено публикаций: <strong>{{ articles|length }}</strong></p>
+        <ul>
+            {% for article in articles %}
+                <li>{{ article }}</li>
+            {% empty %}
+                <li>Пока нет опубликованных новостей.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

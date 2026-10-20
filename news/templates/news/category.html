@@ -1,0 +1,23 @@
+{% extends "news/base.html" %}
+
+{% block title %}
+Категория новостей
+{% endblock %}
+
+
+{% block content %}
+    <h2>{{ title|title }}</h2>
+
+    <section>
+        <h3>Последние публикации</h3>
+        <p>{{ subtitle|default:"Самые важные события дня" }}</p>
+        <p>Найдено публикаций: <strong>{{ articles|length }}</strong></p>
+        <ul>
+            {% for article in articles %}
+                <li>{{ article }}</li>
+            {% empty %}
+                <li>Пока нет опубликованных новостей.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
