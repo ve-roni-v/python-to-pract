@@ -12,7 +12,7 @@
         <p>Найдено публикаций: <strong>{{ articles|length }}</strong></p>
         <ul>
             {% for article in articles %}
-                <li>{{ article }}</li>
+                <li class="card">{{ article }}</li>
             {% empty %}
                 <li>Пока нет опубликованных новостей.</li>
             {% endfor %}

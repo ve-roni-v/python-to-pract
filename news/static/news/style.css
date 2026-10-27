@@ -10,7 +10,16 @@ body {
 header {
     background-color: #17324d;
     color: white;
-    padding: 24px 0;
+    padding: 24px 0px;
+
+}
+
+h1 {
+    color: pink;
+}
+
+h2 {
+    color: pink;
 }
 
 /* Основной контейнер */
@@ -32,12 +41,14 @@ nav {
 }
 
 nav a {
-    color: black;
+    color: white;
     text-decoration: none;
     margin-right: 20px;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
+    color: pink;
     text-decoration: underline;
 }
 
