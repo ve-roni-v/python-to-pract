@@ -1,37 +1,34 @@
 # from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Article
 
 # Create your views here.
 
+# def index(request):
+#     return HttpResponse("Главная страница новостей")
+
 def index(request):
-    return HttpResponse("Главная страница новостей")
+    articles = Article.objects.filter(
+        is_published=True
+    ).order_by("-created_at")
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(
+        request,
+        "news/index.html",
+        context,
+    )
 
 def about(request):
     return HttpResponse("О нашем новостном издании")
 
-# def index(request):
-#     html = """
-#     <!DOCTYPE html>
-#     <html lang="ru">
-#     <head>
-#         <meta charset="UTF-8">
-#         <title>Новостной портал</title>
-#     </head>
-#     <body>
-#         <header>
-#             <h1>Новостной портал</h1>
-#         </header>
-#         <main>
-#             <h2>Главные новости дня</h2>
-#         </main>
-#     </body>
-#     </html>
-#     """
-#     return HttpResponse(html)
 
-def index(request):
-    return render(request, "news/index.html")
+# def index(request):
+#     return render(request, "news/index.html")
 
 # def index(request):
 #     context = {
@@ -51,16 +48,16 @@ def index(request):
 #     "article_3": "Третья новость",
 # }
 
-def index(request):
-    context = {
-        "title": "Главные новости дня",
-        "articles": [
-            "В городе открылся новый парк",
-            "Учёные представили новую технологию",
-            "В университете начался учебный год",
-        ],
-    }
-    return render(request, "news/index.html", context)
+# def index(request):
+#     context = {
+#         "title": "Главные новости дня",
+#         "articles": [
+#             "В городе открылся новый парк",
+#             "Учёные представили новую технологию",
+#             "В университете начался учебный год",
+#         ],
+#     }
+#     return render(request, "news/index.html", context)
 
 def category(request):
     context = {
