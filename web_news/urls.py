@@ -24,5 +24,15 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('category/', views.category, name='category'),
     path('contact/', views.contact, name='contact'),
+    path(
+        "article/<int:article_id>/",
+        views.article_detail,
+        name="article_detail",
+    ),
+    path(
+        "category/<str:category_name>/",
+        views.category,
+        name="category_detail",
+    ),
 ]
 

@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Article
 
 # Create your views here.
@@ -59,16 +59,41 @@ def about(request):
 #     }
 #     return render(request, "news/index.html", context)
 
-def category(request):
+# def category(request):
+#     context = {
+#         "title": "Технологии",
+#         "articles": [
+#             "Представлена новая модель смартфона",
+#             "Компания выпустила обновление программного обеспечения",
+#             "Учёные разработали новый процессор",
+#         ],
+#     }
+#     return render(request, "news/category.html", context)
+
+def category(request, category_name=None):
+    if category_name is None:
+        articles = Article.objects.filter(
+            is_published=True
+        ).order_by("-created_at")
+
+        category_name = "Все категории"
+    else:
+        articles = Article.objects.filter(
+            is_published=True,
+            category__iexact=category_name,
+        ).order_by("-created_at")
+
     context = {
-        "title": "Технологии",
-        "articles": [
-            "Представлена новая модель смартфона",
-            "Компания выпустила обновление программного обеспечения",
-            "Учёные разработали новый процессор",
-        ],
+        "articles": articles,
+        "category_name": category_name,
     }
-    return render(request, "news/category.html", context)
+
+    return render(
+        request,
+        "news/category.html",
+        context,
+    )
+
 
 
 def about(request):
@@ -91,3 +116,21 @@ def contact(request):
         ],
     }
     return render(request, "news/contact.html", context)
+
+
+def article_detail(request, article_id):
+    article = get_object_or_404(
+        Article,
+        id=article_id,
+        is_published=True,
+    )
+
+    context = {
+        "article": article,
+    }
+
+    return render(
+        request,
+        "news/article_detail.html",
+        context,
+    )

@@ -7,9 +7,11 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "title",
+        "category",
         "created_at",
         "is_published",
         "author",
+
     )
 
     list_filter = (
