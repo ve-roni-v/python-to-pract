@@ -79,3 +79,24 @@ footer {
     padding: 20px 0;
     color: #455a64;
 }
+
+.hover-lift {
+transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+transform: translateY(-4px);
+box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.08)!important;
+}
+
+.link-primary-hover:hover {
+color: var(--bs-primary)!important;
+}
+
+.small-95 {
+font-size: 0.95rem;
+}
+
+.small-90 {
+font-size: 0.90rem;
+}

@@ -11,12 +11,15 @@ class ArticleAdmin(admin.ModelAdmin):
         "created_at",
         "is_published",
         "author",
-
     )
 
     list_filter = (
         "is_published",
         "created_at",
+        "category",
+        "id",
+        "title",
+        "author",
     )
 
     search_fields = (
