@@ -20,7 +20,13 @@
                     <h1 class="card-title mb-3">
                         {{ article.title }}
                     </h1>
-
+                    {% if article.image %}
+                        <img
+                            src="{{ article.image.url }}"
+                            alt="{{ article.title }}"
+                            width="600"
+                        >
+                    {% endif %}
                     {% if article.created_at %}
                         <p class="text-muted small">
                             Дата:
@@ -34,6 +40,10 @@
 
                 </div>
             </div>
+            <a href="{% url 'article_edit' article_id=article.id %}">
+                Редактировать новость
+            </a>
+
 
         </div>
     </div>

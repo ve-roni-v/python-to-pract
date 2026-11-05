@@ -218,3 +218,9 @@ def add_article(request):
         "news/add_article.html",
         context,
     )
+
+def article_created(request):
+    return render(
+        request,
+        "news/article_created.html",
+    )
