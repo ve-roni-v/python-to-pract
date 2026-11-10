@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article
 from .forms import ArticleForm
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -136,6 +138,7 @@ def article_detail(request, article_id):
         context,
     )
 
+@login_required
 def edit_article(request, article_id):
     article = get_object_or_404(
         Article,
@@ -219,8 +222,30 @@ def add_article(request):
         context,
     )
 
+@login_required
 def article_created(request):
     return render(
         request,
         "news/article_created.html",
+    )
+
+@login_required
+def delete_article(request, article_id):
+    article = get_object_or_404(
+        Article,
+        id=article_id
+    )
+
+    if request.method == "POST":
+        article.delete()
+        return redirect("home")
+
+    context = {
+        "article": article,
+    }
+
+    return render(
+        request,
+        "news/delete_article.html",
+        context
     )
