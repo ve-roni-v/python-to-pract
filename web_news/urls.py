@@ -80,6 +80,26 @@ urlpatterns = [
         name="logout"
     ),
 
+    path(
+        "article/<int:article_id>/archive/",
+        views.archive_article,
+        name="article_archive"
+    ),
+
+    path(
+        "article/<int:article_id>/restore/",
+        views.restore_article,
+        name="article_restore"
+    ),
+
+    path(
+        "articles/archived/",
+        views.archived_articles,
+        name="archived_articles"
+    ),
+
+
+
 
 ]
 

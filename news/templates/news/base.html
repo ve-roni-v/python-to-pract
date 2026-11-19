@@ -64,6 +64,14 @@
 
                 {% endif %}
 
+                {% if perms.news.change_article %}
+
+                    <a href="{% url 'archived_articles' %}">
+                        Скрытые новости
+                    </a>
+
+                {% endif %}
+
                 <a class="nav-link" href="{% url 'category' %}">
                     Категории
                 </a>

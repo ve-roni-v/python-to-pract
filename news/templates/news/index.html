@@ -8,6 +8,53 @@
 {% block content %}
 <div class="container py-4 py-md-5">
     <div class="row mb-5 text-center text-sm-start border-bottom pb-4 align-items-end g-3">
+        <form method="GET">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Введите название новости"
+                value="{{ query }}"
+            >
+
+            <button type="submit">
+                Найти
+            </button>
+
+        </form>
+
+        <div class="pagination">
+
+            {% if page_obj.has_previous %}
+
+                <a href="?page=1&q={{ query }}">
+                    Первая
+                </a>
+
+                <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}">
+                    Назад
+                </a>
+
+            {% endif %}
+
+            <span>
+                Страница {{ page_obj.number }}
+                из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+
+                <a href="?page={{ page_obj.next_page_number }}&q={{ query }}">
+                    Вперёд
+                </a>
+
+                <a href="?page={{ page_obj.paginator.num_pages }}&q={{ query }}">
+                    Последняя
+                </a>
+
+            {% endif %}
+        </div>
+
         <div class="col-sm-8">
             <span class="badge bg-primary mb-2 text-uppercase tracking-wider">Портал</span>
             <h1 class="display-4 fw-bold text-dark mb-1">{{ title|default:"Городской вестник" }}</h1>

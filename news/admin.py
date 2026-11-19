@@ -12,6 +12,7 @@ class ArticleAdmin(admin.ModelAdmin):
         "is_published",
         "author",
         "image",
+        "is_active",
     )
 
     list_filter = (
@@ -21,6 +22,7 @@ class ArticleAdmin(admin.ModelAdmin):
         "id",
         "title",
         "author",
+        "is_active",
     )
 
     search_fields = (
