@@ -165,6 +165,6 @@ LOGOUT_REDIRECT_URL = "/"
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     "CSRF_TRUSTED_ORIGINS",
     ""
-).split(",") if os.environ.get("CSRF_TRUSTED_ORIGINS") else []
+).split(",") if os.environ.get("CSRF_TRUSTED_ORIGINS") else [https://web_news_db.onrender.com]
 
 
